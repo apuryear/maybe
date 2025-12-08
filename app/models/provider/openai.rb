@@ -7,7 +7,7 @@ class Provider::Openai < Provider
   MODELS = %w[gpt-4.1]
 
   def initialize(access_token)
-    @client = ::OpenAI::Client.new(access_token: access_token)
+    @client = ::OpenAI::Client.new(access_token: access_token, uri_base: ENV.fetch("OPENAI_BASE_URL", nil))
   end
 
   def supports_model?(model)
